@@ -1,4 +1,11 @@
 from django.contrib import admin
-from . import models
+from .models import Question, Choice
 
-admin.site.register(models.Question)
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
+
+@admin.register(Question)
+class QustionAdmin(admin.ModelAdmin):
+    model = Question
+    inlines = [ChoiceInline]
